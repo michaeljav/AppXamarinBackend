@@ -1,0 +1,1199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MovilAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ConfiguracionNotificacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DispositivoId" Type="int" Nullable="false" />
+          <Property Name="TipoCatalogoId" Type="int" Nullable="false" />
+          <Property Name="CatalogoId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EstadoId" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Dispositivo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GCMRegistroId" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="EstadoId" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" />
+          <Property Name="SistemaOperativoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogTransaccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DispositivoId" Type="int" Nullable="false" />
+          <Property Name="TipoTransaccionId" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="Mensaje" Type="varchar" MaxLength="250" />
+          <Property Name="RespuestaGCM" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="SistemaOperativo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoCatalogo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoCatalogo" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoTransaccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoTransaccion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MovilApp.dbo.CC_DOM_ESTADOS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CC_DOM_ESTADOS">
+          <Key>
+            <PropertyRef Name="COD_ESTADO" />
+            <PropertyRef Name="DES_ESTADO" />
+          </Key>
+          <Property Name="COD_ESTADO" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="DES_ESTADO" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MovilApp.dbo.CC_MODALIDAD_COMPRA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CC_MODALIDAD_COMPRA">
+          <Key>
+            <PropertyRef Name="COD_MODALIDAD" />
+            <PropertyRef Name="DES_MODALIDAD" />
+          </Key>
+          <Property Name="COD_MODALIDAD" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="DES_MODALIDAD" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MovilApp.dbo.CC_PUBLICACIONES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CC_PUBLICACIONES">
+          <Key>
+            <PropertyRef Name="COD_PERIODO_PUBLICACION" />
+            <PropertyRef Name="COD_PUBLICACION" />
+            <PropertyRef Name="COD_MODALIDAD" />
+            <PropertyRef Name="COD_UNIDAD_COMPRA" />
+            <PropertyRef Name="DES_NUM_TRAMITE" />
+            <PropertyRef Name="DES_CARATULA" />
+            <PropertyRef Name="DES_TRAMITE" />
+            <PropertyRef Name="COD_ESTADO" />
+            <PropertyRef Name="FCH_ESTADO" />
+            <PropertyRef Name="FCH_INICIO_PUBLICACION" />
+            <PropertyRef Name="NUM_CONTROL_CONCURRENCIA" />
+            <PropertyRef Name="COD_RUBRO_PRINCIPAL" />
+          </Key>
+          <Property Name="COD_PERIODO_PUBLICACION" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="COD_PUBLICACION" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="COD_MODALIDAD" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="COD_UNIDAD_COMPRA" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="DES_TIPO_COMPRA" Type="varchar" MaxLength="80" />
+          <Property Name="DES_NUM_TRAMITE" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ID_TRAMITE" Type="varchar" MaxLength="200" />
+          <Property Name="DES_CARATULA" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="DES_TRAMITE" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="DES_OBSERVACIONES" Type="varchar" MaxLength="200" />
+          <Property Name="DES_TIPO_ADJUDICACION" Type="varchar" MaxLength="200" />
+          <Property Name="COD_RUBRO_PRINCIPAL" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="COD_RUBRO_SECUNDARIO" Type="varchar" MaxLength="8" />
+          <Property Name="DES_CONTACTO" Type="varchar" MaxLength="80" />
+          <Property Name="DES_EMAIL_CONTACTO" Type="varchar" MaxLength="60" />
+          <Property Name="FCH_INICIO_RECEP_OFERTAS" Type="date" />
+          <Property Name="FCH_FIN_RECEP_OFERTAS" Type="date" />
+          <Property Name="FCH_EXT_RECEP_OFERTAS" Type="date" />
+          <Property Name="DES_DOMICILIO_ENTREGA_OFERTA" Type="varchar" MaxLength="250" />
+          <Property Name="DES_DOMICILIO_ACTO_APERTURA" Type="varchar" MaxLength="250" />
+          <Property Name="FCH_ESTIMADA_ADJUDICACION" Type="date" />
+          <Property Name="FCH_ADJUDICACION" Type="date" />
+          <Property Name="COD_ESTADO" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="FCH_ESTADO" Type="date" Nullable="false" />
+          <Property Name="DES_MOTIVO_ESTADO" Type="varchar" MaxLength="250" />
+          <Property Name="FCH_INICIO_PUBLICACION" Type="date" Nullable="false" />
+          <Property Name="COD_PERIODO_PLIEGO" Type="varchar" MaxLength="4" />
+          <Property Name="COD_PLIEGO" Type="varchar" MaxLength="6" />
+          <Property Name="COD_PERIODO" Type="varchar" MaxLength="4" />
+          <Property Name="COD_CAPITULO" Type="varchar" MaxLength="4" />
+          <Property Name="COD_DEPENDENCIA" Type="varchar" MaxLength="2" />
+          <Property Name="COD_DAF" Type="varchar" MaxLength="2" />
+          <Property Name="COD_UE" Type="varchar" MaxLength="4" />
+          <Property Name="FCH_PRIMERA_APERTURA" Type="date" />
+          <Property Name="FCH_EXT_PRIMERA_APERTURA" Type="date" />
+          <Property Name="FCH_SEGUNDA_APERTURA" Type="date" />
+          <Property Name="FCH_EXT_SEGUNDA_APERTURA" Type="date" />
+          <Property Name="NUM_CONTROL_CONCURRENCIA" Type="int" Nullable="false" />
+          <Property Name="HRA_EXT_PRIMERA_APERTURA" Type="varchar" MaxLength="5" />
+          <Property Name="HRA_EXT_SEGUNDA_APERTURA" Type="varchar" MaxLength="5" />
+          <Property Name="HRA_PRIMERA_APERTURA" Type="varchar" MaxLength="5" />
+          <Property Name="HRA_SEGUNDA_APERTURA" Type="varchar" MaxLength="5" />
+          <Property Name="DES_PLIEGO" Type="varchar" MaxLength="60" />
+          <Property Name="COD_TIPO_EXCEPCION" Type="varchar" MaxLength="2" />
+          <Property Name="URL_DETALLE" Type="varchar(max)" />
+          <Property Name="CODS_UNSPSC" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MovilApp.dbo.cc_publicaciones_items' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="cc_publicaciones_items">
+          <Key>
+            <PropertyRef Name="COD_PERIODO_PUBLICACION" />
+            <PropertyRef Name="COD_PUBLICACION" />
+            <PropertyRef Name="COD_PUBLICACION_ITEM" />
+            <PropertyRef Name="DES_ITEM_TRAMITE" />
+            <PropertyRef Name="VLR_CANTIDAD" />
+            <PropertyRef Name="NUM_CONTROL_CONCURRENCIA" />
+          </Key>
+          <Property Name="COD_PERIODO_PUBLICACION" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="COD_PUBLICACION" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="COD_PUBLICACION_ITEM" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="DES_ITEM_TRAMITE" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="VLR_CANTIDAD" Type="decimal" Precision="17" Scale="2" Nullable="false" />
+          <Property Name="DES_UNIDAD_MEDIDA" Type="varchar" MaxLength="60" />
+          <Property Name="DES_OBSERVACION" Type="varchar" MaxLength="200" />
+          <Property Name="DES_IDENTIFICACION_PLIEGO" Type="varchar" MaxLength="30" />
+          <Property Name="NUM_RENGLON" Type="decimal" Precision="3" Scale="0" />
+          <Property Name="DES_ID_TRAMITE_ITEM" Type="varchar" MaxLength="200" />
+          <Property Name="NUM_CONTROL_CONCURRENCIA" Type="decimal" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="COD_UNSPSC" Type="varchar" MaxLength="12" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MovilApp.dbo.CC_RUBROS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CC_RUBROS">
+          <Key>
+            <PropertyRef Name="COD_RUBRO" />
+            <PropertyRef Name="DES_RUBRO" />
+          </Key>
+          <Property Name="COD_RUBRO" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="DES_RUBRO" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="FCH_BAJA" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MovilApp.dbo.CC_TRAMITE_ITEMS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CC_TRAMITE_ITEMS">
+          <Key>
+            <PropertyRef Name="COD_UNIDAD_COMPRAS" />
+            <PropertyRef Name="ID_TRAMITE" />
+            <PropertyRef Name="VLR_CANTIDAD" />
+          </Key>
+          <Property Name="COD_UNIDAD_COMPRAS" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ID_TRAMITE" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ID_ITEM" Type="varchar" MaxLength="6" />
+          <Property Name="DES_ITEM_TRAMITE" Type="varchar" MaxLength="130" />
+          <Property Name="VLR_CANTIDAD" Type="decimal" Precision="17" Scale="2" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MovilApp.dbo.CC_TRAMITES_COMPRAS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CC_TRAMITES_COMPRAS">
+          <Key>
+            <PropertyRef Name="COD_ESTADO" />
+          </Key>
+          <Property Name="COD_UNIDAD_COMPRAS" Type="varchar" MaxLength="6" />
+          <Property Name="COD_MODALIDAD" Type="varchar" MaxLength="6" />
+          <Property Name="COD_RUBRO_PRINCIPAL" Type="varchar" MaxLength="8" />
+          <Property Name="ID_TRAMITE" Type="varchar" MaxLength="6" />
+          <Property Name="COD_PERIODO" Type="varchar" MaxLength="4" />
+          <Property Name="DES_CARATULA" Type="varchar" MaxLength="70" />
+          <Property Name="DES_TRAMITE" Type="varchar" MaxLength="130" />
+          <Property Name="FCH_ESTIMADA_ADJUDICACION" Type="date" />
+          <Property Name="NUM_PLIEGO" Type="varchar" MaxLength="6" />
+          <Property Name="DES_CONTACTO" Type="varchar" MaxLength="80" />
+          <Property Name="DES_EMAIL_CONTACTO" Type="varchar" MaxLength="60" />
+          <Property Name="FCH_INICIO" Type="date" />
+          <Property Name="FCH_INICIO_RECEP_OFERTAS" Type="date" />
+          <Property Name="FCH_FIN_RECEP_OFERTAS" Type="date" />
+          <Property Name="FCH_EXT_RECEP_OFERTAS" Type="date" />
+          <Property Name="DES_DOMICILIO_ENTREGA_OFERTA" Type="varchar" MaxLength="250" />
+          <Property Name="FCH_PRIMERA_APERTURA" Type="date" />
+          <Property Name="HRA_PRIMERA_APERTURA" Type="varchar" MaxLength="5" />
+          <Property Name="FCH_EXT_PRIMERA_APERTURA" Type="date" />
+          <Property Name="HRA_EXT_PRIMERA_APERTURA" Type="varchar" MaxLength="5" />
+          <Property Name="FCH_SEGUNDA_APERTURA" Type="date" />
+          <Property Name="HRA_SEGUNDA_APERTURA" Type="varchar" MaxLength="5" />
+          <Property Name="FCH_EXT_SEGUNDA_APERTURA" Type="date" />
+          <Property Name="HRA_EXT_SEGUNDA_APERTURA" Type="varchar" MaxLength="5" />
+          <Property Name="DES_DOMICILIO_ACTO_APERTURA" Type="varchar" MaxLength="250" />
+          <Property Name="FCH_APROBACION" Type="date" />
+          <Property Name="VINCULO" Type="varchar" MaxLength="500" />
+          <Property Name="COD_ESTADO" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="COD_TIPO_EXCEPCION_COMPRA" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MovilApp.dbo.CC_UNIDAD_COMPRAS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CC_UNIDAD_COMPRAS">
+          <Key>
+            <PropertyRef Name="COD_UNIDAD_COMPRAS" />
+            <PropertyRef Name="DES_UNIDAD" />
+          </Key>
+          <Property Name="COD_UNIDAD_COMPRAS" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="DES_UNIDAD" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="COD_CAPITULO" Type="varchar" MaxLength="4" />
+          <Property Name="des_telefono" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MovilApp.dbo.CL_CAPITULO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CL_CAPITULO">
+          <Key>
+            <PropertyRef Name="COD_CAPITULO" />
+            <PropertyRef Name="NOM_CAPITULO" />
+          </Key>
+          <Property Name="COD_CAPITULO" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="NOM_CAPITULO" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__Dispositi__Siste__03F0984C">
+          <End Role="SistemaOperativo" Type="Self.SistemaOperativo" Multiplicity="1" />
+          <End Role="Dispositivo" Type="Self.Dispositivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SistemaOperativo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dispositivo">
+              <PropertyRef Name="SistemaOperativoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConfiguracionNotificacion_Dispositivo">
+          <End Role="Dispositivo" Type="Self.Dispositivo" Multiplicity="1" />
+          <End Role="ConfiguracionNotificacion" Type="Self.ConfiguracionNotificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dispositivo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConfiguracionNotificacion">
+              <PropertyRef Name="DispositivoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConfiguracionNotificacion_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="ConfiguracionNotificacion" Type="Self.ConfiguracionNotificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConfiguracionNotificacion">
+              <PropertyRef Name="EstadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConfiguracionNotificacion_TipoCatalogo">
+          <End Role="TipoCatalogo" Type="Self.TipoCatalogo" Multiplicity="1" />
+          <End Role="ConfiguracionNotificacion" Type="Self.ConfiguracionNotificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCatalogo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConfiguracionNotificacion">
+              <PropertyRef Name="TipoCatalogoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dispositivo_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Dispositivo" Type="Self.Dispositivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dispositivo">
+              <PropertyRef Name="EstadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LogTransaccion_Dispositivo">
+          <End Role="Dispositivo" Type="Self.Dispositivo" Multiplicity="1" />
+          <End Role="LogTransaccion" Type="Self.LogTransaccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dispositivo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LogTransaccion">
+              <PropertyRef Name="DispositivoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LogTransaccion_TipoTransaccion">
+          <End Role="TipoTransaccion" Type="Self.TipoTransaccion" Multiplicity="1" />
+          <End Role="LogTransaccion" Type="Self.LogTransaccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTransaccion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LogTransaccion">
+              <PropertyRef Name="TipoTransaccionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MovilAppModelStoreContainer">
+          <EntitySet Name="ConfiguracionNotificacion" EntityType="Self.ConfiguracionNotificacion" Schema="config" store:Type="Tables" />
+          <EntitySet Name="Dispositivo" EntityType="Self.Dispositivo" Schema="config" store:Type="Tables" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="config" store:Type="Tables" />
+          <EntitySet Name="LogTransaccion" EntityType="Self.LogTransaccion" Schema="config" store:Type="Tables" />
+          <EntitySet Name="SistemaOperativo" EntityType="Self.SistemaOperativo" Schema="config" store:Type="Tables" />
+          <EntitySet Name="TipoCatalogo" EntityType="Self.TipoCatalogo" Schema="config" store:Type="Tables" />
+          <EntitySet Name="TipoTransaccion" EntityType="Self.TipoTransaccion" Schema="config" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CC_DOM_ESTADOS" EntityType="Self.CC_DOM_ESTADOS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[CC_DOM_ESTADOS].[COD_ESTADO] AS [COD_ESTADO], 
+[CC_DOM_ESTADOS].[DES_ESTADO] AS [DES_ESTADO]
+FROM [dbo].[CC_DOM_ESTADOS] AS [CC_DOM_ESTADOS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CC_MODALIDAD_COMPRA" EntityType="Self.CC_MODALIDAD_COMPRA" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[CC_MODALIDAD_COMPRA].[COD_MODALIDAD] AS [COD_MODALIDAD], 
+[CC_MODALIDAD_COMPRA].[DES_MODALIDAD] AS [DES_MODALIDAD]
+FROM [dbo].[CC_MODALIDAD_COMPRA] AS [CC_MODALIDAD_COMPRA]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CC_PUBLICACIONES" EntityType="Self.CC_PUBLICACIONES" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[CC_PUBLICACIONES].[COD_PERIODO_PUBLICACION] AS [COD_PERIODO_PUBLICACION], 
+[CC_PUBLICACIONES].[COD_PUBLICACION] AS [COD_PUBLICACION], 
+[CC_PUBLICACIONES].[COD_MODALIDAD] AS [COD_MODALIDAD], 
+[CC_PUBLICACIONES].[COD_UNIDAD_COMPRA] AS [COD_UNIDAD_COMPRA], 
+[CC_PUBLICACIONES].[DES_TIPO_COMPRA] AS [DES_TIPO_COMPRA], 
+[CC_PUBLICACIONES].[DES_NUM_TRAMITE] AS [DES_NUM_TRAMITE], 
+[CC_PUBLICACIONES].[ID_TRAMITE] AS [ID_TRAMITE], 
+[CC_PUBLICACIONES].[DES_CARATULA] AS [DES_CARATULA], 
+[CC_PUBLICACIONES].[DES_TRAMITE] AS [DES_TRAMITE], 
+[CC_PUBLICACIONES].[DES_OBSERVACIONES] AS [DES_OBSERVACIONES], 
+[CC_PUBLICACIONES].[DES_TIPO_ADJUDICACION] AS [DES_TIPO_ADJUDICACION], 
+[CC_PUBLICACIONES].[COD_RUBRO_PRINCIPAL] AS [COD_RUBRO_PRINCIPAL], 
+[CC_PUBLICACIONES].[COD_RUBRO_SECUNDARIO] AS [COD_RUBRO_SECUNDARIO], 
+[CC_PUBLICACIONES].[DES_CONTACTO] AS [DES_CONTACTO], 
+[CC_PUBLICACIONES].[DES_EMAIL_CONTACTO] AS [DES_EMAIL_CONTACTO], 
+[CC_PUBLICACIONES].[FCH_INICIO_RECEP_OFERTAS] AS [FCH_INICIO_RECEP_OFERTAS], 
+[CC_PUBLICACIONES].[FCH_FIN_RECEP_OFERTAS] AS [FCH_FIN_RECEP_OFERTAS], 
+[CC_PUBLICACIONES].[FCH_EXT_RECEP_OFERTAS] AS [FCH_EXT_RECEP_OFERTAS], 
+[CC_PUBLICACIONES].[DES_DOMICILIO_ENTREGA_OFERTA] AS [DES_DOMICILIO_ENTREGA_OFERTA], 
+[CC_PUBLICACIONES].[DES_DOMICILIO_ACTO_APERTURA] AS [DES_DOMICILIO_ACTO_APERTURA], 
+[CC_PUBLICACIONES].[FCH_ESTIMADA_ADJUDICACION] AS [FCH_ESTIMADA_ADJUDICACION], 
+[CC_PUBLICACIONES].[FCH_ADJUDICACION] AS [FCH_ADJUDICACION], 
+[CC_PUBLICACIONES].[COD_ESTADO] AS [COD_ESTADO], 
+[CC_PUBLICACIONES].[FCH_ESTADO] AS [FCH_ESTADO], 
+[CC_PUBLICACIONES].[DES_MOTIVO_ESTADO] AS [DES_MOTIVO_ESTADO], 
+[CC_PUBLICACIONES].[FCH_INICIO_PUBLICACION] AS [FCH_INICIO_PUBLICACION], 
+[CC_PUBLICACIONES].[COD_PERIODO_PLIEGO] AS [COD_PERIODO_PLIEGO], 
+[CC_PUBLICACIONES].[COD_PLIEGO] AS [COD_PLIEGO], 
+[CC_PUBLICACIONES].[COD_PERIODO] AS [COD_PERIODO], 
+[CC_PUBLICACIONES].[COD_CAPITULO] AS [COD_CAPITULO], 
+[CC_PUBLICACIONES].[COD_DEPENDENCIA] AS [COD_DEPENDENCIA], 
+[CC_PUBLICACIONES].[COD_DAF] AS [COD_DAF], 
+[CC_PUBLICACIONES].[COD_UE] AS [COD_UE], 
+[CC_PUBLICACIONES].[FCH_PRIMERA_APERTURA] AS [FCH_PRIMERA_APERTURA], 
+[CC_PUBLICACIONES].[FCH_EXT_PRIMERA_APERTURA] AS [FCH_EXT_PRIMERA_APERTURA], 
+[CC_PUBLICACIONES].[FCH_SEGUNDA_APERTURA] AS [FCH_SEGUNDA_APERTURA], 
+[CC_PUBLICACIONES].[FCH_EXT_SEGUNDA_APERTURA] AS [FCH_EXT_SEGUNDA_APERTURA], 
+[CC_PUBLICACIONES].[NUM_CONTROL_CONCURRENCIA] AS [NUM_CONTROL_CONCURRENCIA], 
+[CC_PUBLICACIONES].[HRA_EXT_PRIMERA_APERTURA] AS [HRA_EXT_PRIMERA_APERTURA], 
+[CC_PUBLICACIONES].[HRA_EXT_SEGUNDA_APERTURA] AS [HRA_EXT_SEGUNDA_APERTURA], 
+[CC_PUBLICACIONES].[HRA_PRIMERA_APERTURA] AS [HRA_PRIMERA_APERTURA], 
+[CC_PUBLICACIONES].[HRA_SEGUNDA_APERTURA] AS [HRA_SEGUNDA_APERTURA], 
+[CC_PUBLICACIONES].[DES_PLIEGO] AS [DES_PLIEGO], 
+[CC_PUBLICACIONES].[COD_TIPO_EXCEPCION] AS [COD_TIPO_EXCEPCION], 
+[CC_PUBLICACIONES].[URL_DETALLE] AS [URL_DETALLE], 
+[CC_PUBLICACIONES].[CODS_UNSPSC] AS [CODS_UNSPSC]
+FROM [dbo].[CC_PUBLICACIONES] AS [CC_PUBLICACIONES]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="cc_publicaciones_items" EntityType="Self.cc_publicaciones_items" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[cc_publicaciones_items].[COD_PERIODO_PUBLICACION] AS [COD_PERIODO_PUBLICACION], 
+[cc_publicaciones_items].[COD_PUBLICACION] AS [COD_PUBLICACION], 
+[cc_publicaciones_items].[COD_PUBLICACION_ITEM] AS [COD_PUBLICACION_ITEM], 
+[cc_publicaciones_items].[DES_ITEM_TRAMITE] AS [DES_ITEM_TRAMITE], 
+[cc_publicaciones_items].[VLR_CANTIDAD] AS [VLR_CANTIDAD], 
+[cc_publicaciones_items].[DES_UNIDAD_MEDIDA] AS [DES_UNIDAD_MEDIDA], 
+[cc_publicaciones_items].[DES_OBSERVACION] AS [DES_OBSERVACION], 
+[cc_publicaciones_items].[DES_IDENTIFICACION_PLIEGO] AS [DES_IDENTIFICACION_PLIEGO], 
+[cc_publicaciones_items].[NUM_RENGLON] AS [NUM_RENGLON], 
+[cc_publicaciones_items].[DES_ID_TRAMITE_ITEM] AS [DES_ID_TRAMITE_ITEM], 
+[cc_publicaciones_items].[NUM_CONTROL_CONCURRENCIA] AS [NUM_CONTROL_CONCURRENCIA], 
+[cc_publicaciones_items].[COD_UNSPSC] AS [COD_UNSPSC]
+FROM [dbo].[cc_publicaciones_items] AS [cc_publicaciones_items]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CC_RUBROS" EntityType="Self.CC_RUBROS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[CC_RUBROS].[COD_RUBRO] AS [COD_RUBRO], 
+[CC_RUBROS].[DES_RUBRO] AS [DES_RUBRO], 
+[CC_RUBROS].[FCH_BAJA] AS [FCH_BAJA]
+FROM [dbo].[CC_RUBROS] AS [CC_RUBROS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CC_TRAMITE_ITEMS" EntityType="Self.CC_TRAMITE_ITEMS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[CC_TRAMITE_ITEMS].[COD_UNIDAD_COMPRAS] AS [COD_UNIDAD_COMPRAS], 
+[CC_TRAMITE_ITEMS].[ID_TRAMITE] AS [ID_TRAMITE], 
+[CC_TRAMITE_ITEMS].[ID_ITEM] AS [ID_ITEM], 
+[CC_TRAMITE_ITEMS].[DES_ITEM_TRAMITE] AS [DES_ITEM_TRAMITE], 
+[CC_TRAMITE_ITEMS].[VLR_CANTIDAD] AS [VLR_CANTIDAD]
+FROM [dbo].[CC_TRAMITE_ITEMS] AS [CC_TRAMITE_ITEMS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CC_TRAMITES_COMPRAS" EntityType="Self.CC_TRAMITES_COMPRAS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[CC_TRAMITES_COMPRAS].[COD_UNIDAD_COMPRAS] AS [COD_UNIDAD_COMPRAS], 
+[CC_TRAMITES_COMPRAS].[COD_MODALIDAD] AS [COD_MODALIDAD], 
+[CC_TRAMITES_COMPRAS].[COD_RUBRO_PRINCIPAL] AS [COD_RUBRO_PRINCIPAL], 
+[CC_TRAMITES_COMPRAS].[ID_TRAMITE] AS [ID_TRAMITE], 
+[CC_TRAMITES_COMPRAS].[COD_PERIODO] AS [COD_PERIODO], 
+[CC_TRAMITES_COMPRAS].[DES_CARATULA] AS [DES_CARATULA], 
+[CC_TRAMITES_COMPRAS].[DES_TRAMITE] AS [DES_TRAMITE], 
+[CC_TRAMITES_COMPRAS].[FCH_ESTIMADA_ADJUDICACION] AS [FCH_ESTIMADA_ADJUDICACION], 
+[CC_TRAMITES_COMPRAS].[NUM_PLIEGO] AS [NUM_PLIEGO], 
+[CC_TRAMITES_COMPRAS].[DES_CONTACTO] AS [DES_CONTACTO], 
+[CC_TRAMITES_COMPRAS].[DES_EMAIL_CONTACTO] AS [DES_EMAIL_CONTACTO], 
+[CC_TRAMITES_COMPRAS].[FCH_INICIO] AS [FCH_INICIO], 
+[CC_TRAMITES_COMPRAS].[FCH_INICIO_RECEP_OFERTAS] AS [FCH_INICIO_RECEP_OFERTAS], 
+[CC_TRAMITES_COMPRAS].[FCH_FIN_RECEP_OFERTAS] AS [FCH_FIN_RECEP_OFERTAS], 
+[CC_TRAMITES_COMPRAS].[FCH_EXT_RECEP_OFERTAS] AS [FCH_EXT_RECEP_OFERTAS], 
+[CC_TRAMITES_COMPRAS].[DES_DOMICILIO_ENTREGA_OFERTA] AS [DES_DOMICILIO_ENTREGA_OFERTA], 
+[CC_TRAMITES_COMPRAS].[FCH_PRIMERA_APERTURA] AS [FCH_PRIMERA_APERTURA], 
+[CC_TRAMITES_COMPRAS].[HRA_PRIMERA_APERTURA] AS [HRA_PRIMERA_APERTURA], 
+[CC_TRAMITES_COMPRAS].[FCH_EXT_PRIMERA_APERTURA] AS [FCH_EXT_PRIMERA_APERTURA], 
+[CC_TRAMITES_COMPRAS].[HRA_EXT_PRIMERA_APERTURA] AS [HRA_EXT_PRIMERA_APERTURA], 
+[CC_TRAMITES_COMPRAS].[FCH_SEGUNDA_APERTURA] AS [FCH_SEGUNDA_APERTURA], 
+[CC_TRAMITES_COMPRAS].[HRA_SEGUNDA_APERTURA] AS [HRA_SEGUNDA_APERTURA], 
+[CC_TRAMITES_COMPRAS].[FCH_EXT_SEGUNDA_APERTURA] AS [FCH_EXT_SEGUNDA_APERTURA], 
+[CC_TRAMITES_COMPRAS].[HRA_EXT_SEGUNDA_APERTURA] AS [HRA_EXT_SEGUNDA_APERTURA], 
+[CC_TRAMITES_COMPRAS].[DES_DOMICILIO_ACTO_APERTURA] AS [DES_DOMICILIO_ACTO_APERTURA], 
+[CC_TRAMITES_COMPRAS].[FCH_APROBACION] AS [FCH_APROBACION], 
+[CC_TRAMITES_COMPRAS].[VINCULO] AS [VINCULO], 
+[CC_TRAMITES_COMPRAS].[COD_ESTADO] AS [COD_ESTADO], 
+[CC_TRAMITES_COMPRAS].[COD_TIPO_EXCEPCION_COMPRA] AS [COD_TIPO_EXCEPCION_COMPRA]
+FROM [dbo].[CC_TRAMITES_COMPRAS] AS [CC_TRAMITES_COMPRAS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CC_UNIDAD_COMPRAS" EntityType="Self.CC_UNIDAD_COMPRAS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[CC_UNIDAD_COMPRAS].[COD_UNIDAD_COMPRAS] AS [COD_UNIDAD_COMPRAS], 
+[CC_UNIDAD_COMPRAS].[DES_UNIDAD] AS [DES_UNIDAD], 
+[CC_UNIDAD_COMPRAS].[COD_CAPITULO] AS [COD_CAPITULO], 
+[CC_UNIDAD_COMPRAS].[des_telefono] AS [des_telefono]
+FROM [dbo].[CC_UNIDAD_COMPRAS] AS [CC_UNIDAD_COMPRAS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CL_CAPITULO" EntityType="Self.CL_CAPITULO" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[CL_CAPITULO].[COD_CAPITULO] AS [COD_CAPITULO], 
+[CL_CAPITULO].[NOM_CAPITULO] AS [NOM_CAPITULO]
+FROM [dbo].[CL_CAPITULO] AS [CL_CAPITULO]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Dispositi__Siste__03F0984C" Association="Self.FK__Dispositi__Siste__03F0984C">
+            <End Role="SistemaOperativo" EntitySet="SistemaOperativo" />
+            <End Role="Dispositivo" EntitySet="Dispositivo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConfiguracionNotificacion_Dispositivo" Association="Self.FK_ConfiguracionNotificacion_Dispositivo">
+            <End Role="Dispositivo" EntitySet="Dispositivo" />
+            <End Role="ConfiguracionNotificacion" EntitySet="ConfiguracionNotificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConfiguracionNotificacion_Estado" Association="Self.FK_ConfiguracionNotificacion_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="ConfiguracionNotificacion" EntitySet="ConfiguracionNotificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConfiguracionNotificacion_TipoCatalogo" Association="Self.FK_ConfiguracionNotificacion_TipoCatalogo">
+            <End Role="TipoCatalogo" EntitySet="TipoCatalogo" />
+            <End Role="ConfiguracionNotificacion" EntitySet="ConfiguracionNotificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dispositivo_Estado" Association="Self.FK_Dispositivo_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Dispositivo" EntitySet="Dispositivo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LogTransaccion_Dispositivo" Association="Self.FK_LogTransaccion_Dispositivo">
+            <End Role="Dispositivo" EntitySet="Dispositivo" />
+            <End Role="LogTransaccion" EntitySet="LogTransaccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LogTransaccion_TipoTransaccion" Association="Self.FK_LogTransaccion_TipoTransaccion">
+            <End Role="TipoTransaccion" EntitySet="TipoTransaccion" />
+            <End Role="LogTransaccion" EntitySet="LogTransaccion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MovilAppModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MAppEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Dispositivo" EntityType="MovilAppModel.Dispositivo" />
+          <EntitySet Name="Estado" EntityType="MovilAppModel.Estado" />
+          <EntitySet Name="LogTransaccion" EntityType="MovilAppModel.LogTransaccion" />
+          <EntitySet Name="TipoCatalogo" EntityType="MovilAppModel.TipoCatalogo" />
+          <EntitySet Name="TipoTransaccion" EntityType="MovilAppModel.TipoTransaccion" />
+          <EntitySet Name="CC_DOM_ESTADOS" EntityType="MovilAppModel.CC_DOM_ESTADOS" />
+          <EntitySet Name="CC_MODALIDAD_COMPRA" EntityType="MovilAppModel.CC_MODALIDAD_COMPRA" />
+          <EntitySet Name="CC_PUBLICACIONES" EntityType="MovilAppModel.CC_PUBLICACIONES" />
+          <EntitySet Name="cc_publicaciones_items" EntityType="MovilAppModel.cc_publicaciones_items" />
+          <EntitySet Name="CC_RUBROS" EntityType="MovilAppModel.CC_RUBROS" />
+          <EntitySet Name="CC_TRAMITE_ITEMS" EntityType="MovilAppModel.CC_TRAMITE_ITEMS" />
+          <EntitySet Name="CC_TRAMITES_COMPRAS" EntityType="MovilAppModel.CC_TRAMITES_COMPRAS" />
+          <EntitySet Name="CL_CAPITULO" EntityType="MovilAppModel.CL_CAPITULO" />
+          <EntitySet Name="sysdiagrams" EntityType="MovilAppModel.sysdiagrams" />
+          <AssociationSet Name="FK_Dispositivo_Estado" Association="MovilAppModel.FK_Dispositivo_Estado">
+            <End EntitySet="Estado" Role="Estado" />
+            <End EntitySet="Dispositivo" Role="Dispositivo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LogTransaccion_TipoTransaccion" Association="MovilAppModel.FK_LogTransaccion_TipoTransaccion">
+            <End Role="TipoTransaccion" EntitySet="TipoTransaccion" />
+            <End Role="LogTransaccion" EntitySet="LogTransaccion" />
+          </AssociationSet>
+          <EntitySet Name="ConfiguracionNotificacion" EntityType="MovilAppModel.ConfiguracionNotificacion" />
+          <AssociationSet Name="FK_ConfiguracionNotificacion_Dispositivo" Association="MovilAppModel.FK_ConfiguracionNotificacion_Dispositivo">
+            <End EntitySet="Dispositivo" Role="Dispositivo" />
+            <End EntitySet="ConfiguracionNotificacion" Role="ConfiguracionNotificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConfiguracionNotificacion_Estado" Association="MovilAppModel.FK_ConfiguracionNotificacion_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="ConfiguracionNotificacion" EntitySet="ConfiguracionNotificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConfiguracionNotificacion_TipoCatalogo" Association="MovilAppModel.FK_ConfiguracionNotificacion_TipoCatalogo">
+            <End Role="TipoCatalogo" EntitySet="TipoCatalogo" />
+            <End Role="ConfiguracionNotificacion" EntitySet="ConfiguracionNotificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LogTransaccion_Dispositivo" Association="MovilAppModel.FK_LogTransaccion_Dispositivo">
+            <End EntitySet="Dispositivo" Role="Dispositivo" />
+            <End EntitySet="LogTransaccion" Role="LogTransaccion" />
+          </AssociationSet>
+          <EntitySet Name="SistemaOperativo" EntityType="MovilAppModel.SistemaOperativo" />
+          <AssociationSet Name="FK__Dispositi__Siste__3F466844" Association="MovilAppModel.FK__Dispositi__Siste__3F466844">
+            <End Role="SistemaOperativo" EntitySet="SistemaOperativo" />
+            <End Role="Dispositivo" EntitySet="Dispositivo" />
+          </AssociationSet>
+          <EntitySet Name="CC_UNIDAD_COMPRAS" EntityType="MovilAppModel.CC_UNIDAD_COMPRAS" />
+        </EntityContainer>
+        <EntityType Name="Dispositivo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="GCMRegistroId" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="EstadoId" Nullable="false" Type="Int32" />
+          <Property Name="FechaRegistro" Nullable="false" Precision="3" Type="DateTime" />
+          <Property Name="FechaModificacion" Precision="3" Type="DateTime" />
+          <NavigationProperty Name="Estado" Relationship="MovilAppModel.FK_Dispositivo_Estado" FromRole="Dispositivo" ToRole="Estado" />
+          <NavigationProperty Name="ConfiguracionNotificacion" Relationship="MovilAppModel.FK_ConfiguracionNotificacion_Dispositivo" FromRole="Dispositivo" ToRole="ConfiguracionNotificacion" />
+          <NavigationProperty Name="LogTransaccion" Relationship="MovilAppModel.FK_LogTransaccion_Dispositivo" FromRole="Dispositivo" ToRole="LogTransaccion" />
+          <Property Type="Int32" Name="SistemaOperativoId" Nullable="false" />
+          <NavigationProperty Name="SistemaOperativo" Relationship="MovilAppModel.FK__Dispositi__Siste__3F466844" FromRole="Dispositivo" ToRole="SistemaOperativo" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado1" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Dispositivo" Relationship="MovilAppModel.FK_Dispositivo_Estado" FromRole="Estado" ToRole="Dispositivo" />
+          <NavigationProperty Name="ConfiguracionNotificacion" Relationship="MovilAppModel.FK_ConfiguracionNotificacion_Estado" FromRole="Estado" ToRole="ConfiguracionNotificacion" />
+        </EntityType>
+        <EntityType Name="LogTransaccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="DispositivoId" Type="Int32" Nullable="false" />
+          <Property Name="TipoTransaccionId" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Mensaje" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="RespuestaGCM" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="TipoTransaccion" Relationship="MovilAppModel.FK_LogTransaccion_TipoTransaccion" FromRole="LogTransaccion" ToRole="TipoTransaccion" />
+          <NavigationProperty Name="Dispositivo" Relationship="MovilAppModel.FK_LogTransaccion_Dispositivo" FromRole="LogTransaccion" ToRole="Dispositivo" />
+        </EntityType>
+        <EntityType Name="TipoCatalogo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoCatalogo1" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="ConfiguracionNotificacion" Relationship="MovilAppModel.FK_ConfiguracionNotificacion_TipoCatalogo" FromRole="TipoCatalogo" ToRole="ConfiguracionNotificacion" />
+        </EntityType>
+        <EntityType Name="TipoTransaccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoTransaccion1" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="LogTransaccion" Relationship="MovilAppModel.FK_LogTransaccion_TipoTransaccion" FromRole="TipoTransaccion" ToRole="LogTransaccion" />
+        </EntityType>
+        <EntityType Name="CC_DOM_ESTADOS">
+          <Key>
+            <PropertyRef Name="COD_ESTADO" />
+            <PropertyRef Name="DES_ESTADO" />
+          </Key>
+          <Property Name="COD_ESTADO" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="DES_ESTADO" Type="String" Nullable="false" MaxLength="60" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CC_MODALIDAD_COMPRA">
+          <Key>
+            <PropertyRef Name="COD_MODALIDAD" />
+            <PropertyRef Name="DES_MODALIDAD" />
+          </Key>
+          <Property Name="COD_MODALIDAD" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="DES_MODALIDAD" Type="String" Nullable="false" MaxLength="80" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CC_PUBLICACIONES">
+          <Key>
+            <PropertyRef Name="COD_PERIODO_PUBLICACION" />
+            <PropertyRef Name="COD_PUBLICACION" />
+            <PropertyRef Name="COD_MODALIDAD" />
+            <PropertyRef Name="COD_UNIDAD_COMPRA" />
+            <PropertyRef Name="DES_NUM_TRAMITE" />
+            <PropertyRef Name="DES_CARATULA" />
+            <PropertyRef Name="DES_TRAMITE" />
+            <PropertyRef Name="COD_RUBRO_PRINCIPAL" />
+            <PropertyRef Name="COD_ESTADO" />
+            <PropertyRef Name="FCH_ESTADO" />
+            <PropertyRef Name="FCH_INICIO_PUBLICACION" />
+            <PropertyRef Name="NUM_CONTROL_CONCURRENCIA" />
+          </Key>
+          <Property Name="COD_PERIODO_PUBLICACION" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="COD_PUBLICACION" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="COD_MODALIDAD" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="COD_UNIDAD_COMPRA" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="DES_TIPO_COMPRA" Type="String" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="DES_NUM_TRAMITE" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="ID_TRAMITE" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="DES_CARATULA" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="DES_TRAMITE" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="DES_OBSERVACIONES" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="DES_TIPO_ADJUDICACION" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="COD_RUBRO_PRINCIPAL" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="COD_RUBRO_SECUNDARIO" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="DES_CONTACTO" Type="String" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="DES_EMAIL_CONTACTO" Type="String" MaxLength="60" Unicode="false" FixedLength="false" />
+          <Property Name="FCH_INICIO_RECEP_OFERTAS" Type="DateTime" Precision="0" />
+          <Property Name="FCH_FIN_RECEP_OFERTAS" Type="DateTime" Precision="0" />
+          <Property Name="FCH_EXT_RECEP_OFERTAS" Type="DateTime" Precision="0" />
+          <Property Name="DES_DOMICILIO_ENTREGA_OFERTA" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="DES_DOMICILIO_ACTO_APERTURA" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="FCH_ESTIMADA_ADJUDICACION" Type="DateTime" Precision="0" />
+          <Property Name="FCH_ADJUDICACION" Type="DateTime" Precision="0" />
+          <Property Name="COD_ESTADO" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="FCH_ESTADO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DES_MOTIVO_ESTADO" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="FCH_INICIO_PUBLICACION" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="COD_PERIODO_PLIEGO" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="COD_PLIEGO" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="COD_PERIODO" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="COD_CAPITULO" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="COD_DEPENDENCIA" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="COD_DAF" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="COD_UE" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="FCH_PRIMERA_APERTURA" Type="DateTime" Precision="0" />
+          <Property Name="FCH_EXT_PRIMERA_APERTURA" Type="DateTime" Precision="0" />
+          <Property Name="FCH_SEGUNDA_APERTURA" Type="DateTime" Precision="0" />
+          <Property Name="FCH_EXT_SEGUNDA_APERTURA" Type="DateTime" Precision="0" />
+          <Property Name="NUM_CONTROL_CONCURRENCIA" Type="Int32" Nullable="false" />
+          <Property Name="HRA_EXT_PRIMERA_APERTURA" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="HRA_EXT_SEGUNDA_APERTURA" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="HRA_PRIMERA_APERTURA" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="HRA_SEGUNDA_APERTURA" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="DES_PLIEGO" Type="String" MaxLength="60" Unicode="false" FixedLength="false" />
+          <Property Name="COD_TIPO_EXCEPCION" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="URL_DETALLE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CODS_UNSPSC" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="cc_publicaciones_items">
+          <Key>
+            <PropertyRef Name="COD_PERIODO_PUBLICACION" />
+            <PropertyRef Name="COD_PUBLICACION" />
+            <PropertyRef Name="COD_PUBLICACION_ITEM" />
+            <PropertyRef Name="DES_ITEM_TRAMITE" />
+            <PropertyRef Name="VLR_CANTIDAD" />
+            <PropertyRef Name="NUM_CONTROL_CONCURRENCIA" />
+          </Key>
+          <Property Name="COD_PERIODO_PUBLICACION" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="COD_PUBLICACION" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="COD_PUBLICACION_ITEM" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="DES_ITEM_TRAMITE" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="VLR_CANTIDAD" Type="Decimal" Nullable="false" Precision="17" Scale="2" />
+          <Property Name="DES_UNIDAD_MEDIDA" Type="String" MaxLength="60" Unicode="false" FixedLength="false" />
+          <Property Name="DES_OBSERVACION" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="DES_IDENTIFICACION_PLIEGO" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="NUM_RENGLON" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="DES_ID_TRAMITE_ITEM" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="NUM_CONTROL_CONCURRENCIA" Type="Decimal" Nullable="false" Precision="7" Scale="0" />
+          <Property Name="COD_UNSPSC" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CC_RUBROS">
+          <Key>
+            <PropertyRef Name="COD_RUBRO" />
+            <PropertyRef Name="DES_RUBRO" />
+          </Key>
+          <Property Name="COD_RUBRO" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="DES_RUBRO" Type="String" Nullable="false" MaxLength="120" Unicode="false" FixedLength="false" />
+          <Property Name="FCH_BAJA" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="CC_TRAMITE_ITEMS">
+          <Key>
+            <PropertyRef Name="COD_UNIDAD_COMPRAS" />
+            <PropertyRef Name="ID_TRAMITE" />
+            <PropertyRef Name="VLR_CANTIDAD" />
+          </Key>
+          <Property Name="COD_UNIDAD_COMPRAS" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="ID_TRAMITE" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="ID_ITEM" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="DES_ITEM_TRAMITE" Type="String" MaxLength="130" Unicode="false" FixedLength="false" />
+          <Property Name="VLR_CANTIDAD" Type="Decimal" Nullable="false" Precision="17" Scale="2" />
+        </EntityType>
+        <EntityType Name="CC_TRAMITES_COMPRAS">
+          <Key>
+            <PropertyRef Name="COD_ESTADO" />
+          </Key>
+          <Property Name="COD_UNIDAD_COMPRAS" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="COD_MODALIDAD" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="COD_RUBRO_PRINCIPAL" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="ID_TRAMITE" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="COD_PERIODO" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="DES_CARATULA" Type="String" MaxLength="70" Unicode="false" FixedLength="false" />
+          <Property Name="DES_TRAMITE" Type="String" MaxLength="130" Unicode="false" FixedLength="false" />
+          <Property Name="FCH_ESTIMADA_ADJUDICACION" Type="DateTime" Precision="0" />
+          <Property Name="NUM_PLIEGO" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="DES_CONTACTO" Type="String" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="DES_EMAIL_CONTACTO" Type="String" MaxLength="60" Unicode="false" FixedLength="false" />
+          <Property Name="FCH_INICIO" Type="DateTime" Precision="0" />
+          <Property Name="FCH_INICIO_RECEP_OFERTAS" Type="DateTime" Precision="0" />
+          <Property Name="FCH_FIN_RECEP_OFERTAS" Type="DateTime" Precision="0" />
+          <Property Name="FCH_EXT_RECEP_OFERTAS" Type="DateTime" Precision="0" />
+          <Property Name="DES_DOMICILIO_ENTREGA_OFERTA" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="FCH_PRIMERA_APERTURA" Type="DateTime" Precision="0" />
+          <Property Name="HRA_PRIMERA_APERTURA" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="FCH_EXT_PRIMERA_APERTURA" Type="DateTime" Precision="0" />
+          <Property Name="HRA_EXT_PRIMERA_APERTURA" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="FCH_SEGUNDA_APERTURA" Type="DateTime" Precision="0" />
+          <Property Name="HRA_SEGUNDA_APERTURA" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="FCH_EXT_SEGUNDA_APERTURA" Type="DateTime" Precision="0" />
+          <Property Name="HRA_EXT_SEGUNDA_APERTURA" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="DES_DOMICILIO_ACTO_APERTURA" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="FCH_APROBACION" Type="DateTime" Precision="0" />
+          <Property Name="VINCULO" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="COD_ESTADO" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="COD_TIPO_EXCEPCION_COMPRA" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CL_CAPITULO">
+          <Key>
+            <PropertyRef Name="COD_CAPITULO" />
+            <PropertyRef Name="NOM_CAPITULO" />
+          </Key>
+          <Property Name="COD_CAPITULO" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="NOM_CAPITULO" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Dispositivo_Estado">
+          <End Type="MovilAppModel.Estado" Multiplicity="1" Role="Estado" />
+          <End Type="MovilAppModel.Dispositivo" Multiplicity="*" Role="Dispositivo" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dispositivo">
+              <PropertyRef Name="EstadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LogTransaccion_TipoTransaccion">
+          <End Role="TipoTransaccion" Type="MovilAppModel.TipoTransaccion" Multiplicity="1" />
+          <End Role="LogTransaccion" Type="MovilAppModel.LogTransaccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTransaccion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LogTransaccion">
+              <PropertyRef Name="TipoTransaccionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ConfiguracionNotificacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="DispositivoId" Nullable="false" />
+          <Property Type="Int32" Name="TipoCatalogoId" Nullable="false" />
+          <Property Type="String" Name="CatalogoId" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="EstadoId" Nullable="false" />
+          <Property Type="DateTime" Name="FechaRegistro" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaModificacion" Precision="3" />
+          <NavigationProperty Name="Dispositivo" Relationship="MovilAppModel.FK_ConfiguracionNotificacion_Dispositivo" FromRole="ConfiguracionNotificacion" ToRole="Dispositivo" />
+          <NavigationProperty Name="Estado" Relationship="MovilAppModel.FK_ConfiguracionNotificacion_Estado" FromRole="ConfiguracionNotificacion" ToRole="Estado" />
+          <NavigationProperty Name="TipoCatalogo" Relationship="MovilAppModel.FK_ConfiguracionNotificacion_TipoCatalogo" FromRole="ConfiguracionNotificacion" ToRole="TipoCatalogo" />
+        </EntityType>
+        <Association Name="FK_ConfiguracionNotificacion_Dispositivo">
+          <End Type="MovilAppModel.Dispositivo" Multiplicity="1" Role="Dispositivo" />
+          <End Type="MovilAppModel.ConfiguracionNotificacion" Multiplicity="*" Role="ConfiguracionNotificacion" />
+          <ReferentialConstraint>
+            <Principal Role="Dispositivo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConfiguracionNotificacion">
+              <PropertyRef Name="DispositivoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConfiguracionNotificacion_Estado">
+          <End Type="MovilAppModel.Estado" Role="Estado" Multiplicity="1" />
+          <End Type="MovilAppModel.ConfiguracionNotificacion" Role="ConfiguracionNotificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConfiguracionNotificacion">
+              <PropertyRef Name="EstadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConfiguracionNotificacion_TipoCatalogo">
+          <End Type="MovilAppModel.TipoCatalogo" Role="TipoCatalogo" Multiplicity="1" />
+          <End Type="MovilAppModel.ConfiguracionNotificacion" Role="ConfiguracionNotificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCatalogo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConfiguracionNotificacion">
+              <PropertyRef Name="TipoCatalogoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LogTransaccion_Dispositivo">
+          <End Type="MovilAppModel.Dispositivo" Multiplicity="1" Role="Dispositivo" />
+          <End Type="MovilAppModel.LogTransaccion" Multiplicity="*" Role="LogTransaccion" />
+          <ReferentialConstraint>
+            <Principal Role="Dispositivo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LogTransaccion">
+              <PropertyRef Name="DispositivoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SistemaOperativo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Dispositivo" Relationship="MovilAppModel.FK__Dispositi__Siste__3F466844" FromRole="SistemaOperativo" ToRole="Dispositivo" />
+        </EntityType>
+        <Association Name="FK__Dispositi__Siste__3F466844">
+          <End Type="MovilAppModel.SistemaOperativo" Role="SistemaOperativo" Multiplicity="1" />
+          <End Type="MovilAppModel.Dispositivo" Role="Dispositivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SistemaOperativo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dispositivo">
+              <PropertyRef Name="SistemaOperativoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CC_UNIDAD_COMPRAS">
+          <Key>
+            <PropertyRef Name="COD_UNIDAD_COMPRAS" />
+            <PropertyRef Name="DES_UNIDAD" />
+          </Key>
+          <Property Name="COD_UNIDAD_COMPRAS" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="DES_UNIDAD" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="COD_CAPITULO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="des_telefono" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MovilAppModelStoreContainer" CdmEntityContainer="MAppEntities">
+          <EntitySetMapping Name="Dispositivo">
+            <EntityTypeMapping TypeName="MovilAppModel.Dispositivo">
+              <MappingFragment StoreEntitySet="Dispositivo">
+                <ScalarProperty Name="SistemaOperativoId" ColumnName="SistemaOperativoId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GCMRegistroId" ColumnName="GCMRegistroId" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="MovilAppModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Estado1" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogTransaccion">
+            <EntityTypeMapping TypeName="MovilAppModel.LogTransaccion">
+              <MappingFragment StoreEntitySet="LogTransaccion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DispositivoId" ColumnName="DispositivoId" />
+                <ScalarProperty Name="TipoTransaccionId" ColumnName="TipoTransaccionId" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+                <ScalarProperty Name="RespuestaGCM" ColumnName="RespuestaGCM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoCatalogo">
+            <EntityTypeMapping TypeName="MovilAppModel.TipoCatalogo">
+              <MappingFragment StoreEntitySet="TipoCatalogo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TipoCatalogo1" ColumnName="TipoCatalogo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoTransaccion">
+            <EntityTypeMapping TypeName="MovilAppModel.TipoTransaccion">
+              <MappingFragment StoreEntitySet="TipoTransaccion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TipoTransaccion1" ColumnName="TipoTransaccion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CC_DOM_ESTADOS">
+            <EntityTypeMapping TypeName="MovilAppModel.CC_DOM_ESTADOS">
+              <MappingFragment StoreEntitySet="CC_DOM_ESTADOS">
+                <ScalarProperty Name="COD_ESTADO" ColumnName="COD_ESTADO" />
+                <ScalarProperty Name="DES_ESTADO" ColumnName="DES_ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CC_MODALIDAD_COMPRA">
+            <EntityTypeMapping TypeName="MovilAppModel.CC_MODALIDAD_COMPRA">
+              <MappingFragment StoreEntitySet="CC_MODALIDAD_COMPRA">
+                <ScalarProperty Name="COD_MODALIDAD" ColumnName="COD_MODALIDAD" />
+                <ScalarProperty Name="DES_MODALIDAD" ColumnName="DES_MODALIDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CC_PUBLICACIONES">
+            <EntityTypeMapping TypeName="MovilAppModel.CC_PUBLICACIONES">
+              <MappingFragment StoreEntitySet="CC_PUBLICACIONES">
+                <ScalarProperty Name="CODS_UNSPSC" ColumnName="CODS_UNSPSC" />
+                <ScalarProperty Name="URL_DETALLE" ColumnName="URL_DETALLE" />
+                <ScalarProperty Name="COD_PERIODO_PUBLICACION" ColumnName="COD_PERIODO_PUBLICACION" />
+                <ScalarProperty Name="COD_PUBLICACION" ColumnName="COD_PUBLICACION" />
+                <ScalarProperty Name="COD_MODALIDAD" ColumnName="COD_MODALIDAD" />
+                <ScalarProperty Name="COD_UNIDAD_COMPRA" ColumnName="COD_UNIDAD_COMPRA" />
+                <ScalarProperty Name="DES_TIPO_COMPRA" ColumnName="DES_TIPO_COMPRA" />
+                <ScalarProperty Name="DES_NUM_TRAMITE" ColumnName="DES_NUM_TRAMITE" />
+                <ScalarProperty Name="ID_TRAMITE" ColumnName="ID_TRAMITE" />
+                <ScalarProperty Name="DES_CARATULA" ColumnName="DES_CARATULA" />
+                <ScalarProperty Name="DES_TRAMITE" ColumnName="DES_TRAMITE" />
+                <ScalarProperty Name="DES_OBSERVACIONES" ColumnName="DES_OBSERVACIONES" />
+                <ScalarProperty Name="DES_TIPO_ADJUDICACION" ColumnName="DES_TIPO_ADJUDICACION" />
+                <ScalarProperty Name="COD_RUBRO_PRINCIPAL" ColumnName="COD_RUBRO_PRINCIPAL" />
+                <ScalarProperty Name="COD_RUBRO_SECUNDARIO" ColumnName="COD_RUBRO_SECUNDARIO" />
+                <ScalarProperty Name="DES_CONTACTO" ColumnName="DES_CONTACTO" />
+                <ScalarProperty Name="DES_EMAIL_CONTACTO" ColumnName="DES_EMAIL_CONTACTO" />
+                <ScalarProperty Name="FCH_INICIO_RECEP_OFERTAS" ColumnName="FCH_INICIO_RECEP_OFERTAS" />
+                <ScalarProperty Name="FCH_FIN_RECEP_OFERTAS" ColumnName="FCH_FIN_RECEP_OFERTAS" />
+                <ScalarProperty Name="FCH_EXT_RECEP_OFERTAS" ColumnName="FCH_EXT_RECEP_OFERTAS" />
+                <ScalarProperty Name="DES_DOMICILIO_ENTREGA_OFERTA" ColumnName="DES_DOMICILIO_ENTREGA_OFERTA" />
+                <ScalarProperty Name="DES_DOMICILIO_ACTO_APERTURA" ColumnName="DES_DOMICILIO_ACTO_APERTURA" />
+                <ScalarProperty Name="FCH_ESTIMADA_ADJUDICACION" ColumnName="FCH_ESTIMADA_ADJUDICACION" />
+                <ScalarProperty Name="FCH_ADJUDICACION" ColumnName="FCH_ADJUDICACION" />
+                <ScalarProperty Name="COD_ESTADO" ColumnName="COD_ESTADO" />
+                <ScalarProperty Name="FCH_ESTADO" ColumnName="FCH_ESTADO" />
+                <ScalarProperty Name="DES_MOTIVO_ESTADO" ColumnName="DES_MOTIVO_ESTADO" />
+                <ScalarProperty Name="FCH_INICIO_PUBLICACION" ColumnName="FCH_INICIO_PUBLICACION" />
+                <ScalarProperty Name="COD_PERIODO_PLIEGO" ColumnName="COD_PERIODO_PLIEGO" />
+                <ScalarProperty Name="COD_PLIEGO" ColumnName="COD_PLIEGO" />
+                <ScalarProperty Name="COD_PERIODO" ColumnName="COD_PERIODO" />
+                <ScalarProperty Name="COD_CAPITULO" ColumnName="COD_CAPITULO" />
+                <ScalarProperty Name="COD_DEPENDENCIA" ColumnName="COD_DEPENDENCIA" />
+                <ScalarProperty Name="COD_DAF" ColumnName="COD_DAF" />
+                <ScalarProperty Name="COD_UE" ColumnName="COD_UE" />
+                <ScalarProperty Name="FCH_PRIMERA_APERTURA" ColumnName="FCH_PRIMERA_APERTURA" />
+                <ScalarProperty Name="FCH_EXT_PRIMERA_APERTURA" ColumnName="FCH_EXT_PRIMERA_APERTURA" />
+                <ScalarProperty Name="FCH_SEGUNDA_APERTURA" ColumnName="FCH_SEGUNDA_APERTURA" />
+                <ScalarProperty Name="FCH_EXT_SEGUNDA_APERTURA" ColumnName="FCH_EXT_SEGUNDA_APERTURA" />
+                <ScalarProperty Name="NUM_CONTROL_CONCURRENCIA" ColumnName="NUM_CONTROL_CONCURRENCIA" />
+                <ScalarProperty Name="HRA_EXT_PRIMERA_APERTURA" ColumnName="HRA_EXT_PRIMERA_APERTURA" />
+                <ScalarProperty Name="HRA_EXT_SEGUNDA_APERTURA" ColumnName="HRA_EXT_SEGUNDA_APERTURA" />
+                <ScalarProperty Name="HRA_PRIMERA_APERTURA" ColumnName="HRA_PRIMERA_APERTURA" />
+                <ScalarProperty Name="HRA_SEGUNDA_APERTURA" ColumnName="HRA_SEGUNDA_APERTURA" />
+                <ScalarProperty Name="DES_PLIEGO" ColumnName="DES_PLIEGO" />
+                <ScalarProperty Name="COD_TIPO_EXCEPCION" ColumnName="COD_TIPO_EXCEPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cc_publicaciones_items">
+            <EntityTypeMapping TypeName="MovilAppModel.cc_publicaciones_items">
+              <MappingFragment StoreEntitySet="cc_publicaciones_items">
+                <ScalarProperty Name="COD_UNSPSC" ColumnName="COD_UNSPSC" />
+                <ScalarProperty Name="COD_PERIODO_PUBLICACION" ColumnName="COD_PERIODO_PUBLICACION" />
+                <ScalarProperty Name="COD_PUBLICACION" ColumnName="COD_PUBLICACION" />
+                <ScalarProperty Name="COD_PUBLICACION_ITEM" ColumnName="COD_PUBLICACION_ITEM" />
+                <ScalarProperty Name="DES_ITEM_TRAMITE" ColumnName="DES_ITEM_TRAMITE" />
+                <ScalarProperty Name="VLR_CANTIDAD" ColumnName="VLR_CANTIDAD" />
+                <ScalarProperty Name="DES_UNIDAD_MEDIDA" ColumnName="DES_UNIDAD_MEDIDA" />
+                <ScalarProperty Name="DES_OBSERVACION" ColumnName="DES_OBSERVACION" />
+                <ScalarProperty Name="DES_IDENTIFICACION_PLIEGO" ColumnName="DES_IDENTIFICACION_PLIEGO" />
+                <ScalarProperty Name="NUM_RENGLON" ColumnName="NUM_RENGLON" />
+                <ScalarProperty Name="DES_ID_TRAMITE_ITEM" ColumnName="DES_ID_TRAMITE_ITEM" />
+                <ScalarProperty Name="NUM_CONTROL_CONCURRENCIA" ColumnName="NUM_CONTROL_CONCURRENCIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CC_RUBROS">
+            <EntityTypeMapping TypeName="MovilAppModel.CC_RUBROS">
+              <MappingFragment StoreEntitySet="CC_RUBROS">
+                <ScalarProperty Name="COD_RUBRO" ColumnName="COD_RUBRO" />
+                <ScalarProperty Name="DES_RUBRO" ColumnName="DES_RUBRO" />
+                <ScalarProperty Name="FCH_BAJA" ColumnName="FCH_BAJA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CC_TRAMITE_ITEMS">
+            <EntityTypeMapping TypeName="MovilAppModel.CC_TRAMITE_ITEMS">
+              <MappingFragment StoreEntitySet="CC_TRAMITE_ITEMS">
+                <ScalarProperty Name="COD_UNIDAD_COMPRAS" ColumnName="COD_UNIDAD_COMPRAS" />
+                <ScalarProperty Name="ID_TRAMITE" ColumnName="ID_TRAMITE" />
+                <ScalarProperty Name="ID_ITEM" ColumnName="ID_ITEM" />
+                <ScalarProperty Name="DES_ITEM_TRAMITE" ColumnName="DES_ITEM_TRAMITE" />
+                <ScalarProperty Name="VLR_CANTIDAD" ColumnName="VLR_CANTIDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CC_TRAMITES_COMPRAS">
+            <EntityTypeMapping TypeName="MovilAppModel.CC_TRAMITES_COMPRAS">
+              <MappingFragment StoreEntitySet="CC_TRAMITES_COMPRAS">
+                <ScalarProperty Name="COD_UNIDAD_COMPRAS" ColumnName="COD_UNIDAD_COMPRAS" />
+                <ScalarProperty Name="COD_MODALIDAD" ColumnName="COD_MODALIDAD" />
+                <ScalarProperty Name="COD_RUBRO_PRINCIPAL" ColumnName="COD_RUBRO_PRINCIPAL" />
+                <ScalarProperty Name="ID_TRAMITE" ColumnName="ID_TRAMITE" />
+                <ScalarProperty Name="COD_PERIODO" ColumnName="COD_PERIODO" />
+                <ScalarProperty Name="DES_CARATULA" ColumnName="DES_CARATULA" />
+                <ScalarProperty Name="DES_TRAMITE" ColumnName="DES_TRAMITE" />
+                <ScalarProperty Name="FCH_ESTIMADA_ADJUDICACION" ColumnName="FCH_ESTIMADA_ADJUDICACION" />
+                <ScalarProperty Name="NUM_PLIEGO" ColumnName="NUM_PLIEGO" />
+                <ScalarProperty Name="DES_CONTACTO" ColumnName="DES_CONTACTO" />
+                <ScalarProperty Name="DES_EMAIL_CONTACTO" ColumnName="DES_EMAIL_CONTACTO" />
+                <ScalarProperty Name="FCH_INICIO" ColumnName="FCH_INICIO" />
+                <ScalarProperty Name="FCH_INICIO_RECEP_OFERTAS" ColumnName="FCH_INICIO_RECEP_OFERTAS" />
+                <ScalarProperty Name="FCH_FIN_RECEP_OFERTAS" ColumnName="FCH_FIN_RECEP_OFERTAS" />
+                <ScalarProperty Name="FCH_EXT_RECEP_OFERTAS" ColumnName="FCH_EXT_RECEP_OFERTAS" />
+                <ScalarProperty Name="DES_DOMICILIO_ENTREGA_OFERTA" ColumnName="DES_DOMICILIO_ENTREGA_OFERTA" />
+                <ScalarProperty Name="FCH_PRIMERA_APERTURA" ColumnName="FCH_PRIMERA_APERTURA" />
+                <ScalarProperty Name="HRA_PRIMERA_APERTURA" ColumnName="HRA_PRIMERA_APERTURA" />
+                <ScalarProperty Name="FCH_EXT_PRIMERA_APERTURA" ColumnName="FCH_EXT_PRIMERA_APERTURA" />
+                <ScalarProperty Name="HRA_EXT_PRIMERA_APERTURA" ColumnName="HRA_EXT_PRIMERA_APERTURA" />
+                <ScalarProperty Name="FCH_SEGUNDA_APERTURA" ColumnName="FCH_SEGUNDA_APERTURA" />
+                <ScalarProperty Name="HRA_SEGUNDA_APERTURA" ColumnName="HRA_SEGUNDA_APERTURA" />
+                <ScalarProperty Name="FCH_EXT_SEGUNDA_APERTURA" ColumnName="FCH_EXT_SEGUNDA_APERTURA" />
+                <ScalarProperty Name="HRA_EXT_SEGUNDA_APERTURA" ColumnName="HRA_EXT_SEGUNDA_APERTURA" />
+                <ScalarProperty Name="DES_DOMICILIO_ACTO_APERTURA" ColumnName="DES_DOMICILIO_ACTO_APERTURA" />
+                <ScalarProperty Name="FCH_APROBACION" ColumnName="FCH_APROBACION" />
+                <ScalarProperty Name="VINCULO" ColumnName="VINCULO" />
+                <ScalarProperty Name="COD_ESTADO" ColumnName="COD_ESTADO" />
+                <ScalarProperty Name="COD_TIPO_EXCEPCION_COMPRA" ColumnName="COD_TIPO_EXCEPCION_COMPRA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CL_CAPITULO">
+            <EntityTypeMapping TypeName="MovilAppModel.CL_CAPITULO">
+              <MappingFragment StoreEntitySet="CL_CAPITULO">
+                <ScalarProperty Name="COD_CAPITULO" ColumnName="COD_CAPITULO" />
+                <ScalarProperty Name="NOM_CAPITULO" ColumnName="NOM_CAPITULO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MovilAppModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConfiguracionNotificacion">
+            <EntityTypeMapping TypeName="MovilAppModel.ConfiguracionNotificacion">
+              <MappingFragment StoreEntitySet="ConfiguracionNotificacion">
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="CatalogoId" ColumnName="CatalogoId" />
+                <ScalarProperty Name="TipoCatalogoId" ColumnName="TipoCatalogoId" />
+                <ScalarProperty Name="DispositivoId" ColumnName="DispositivoId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SistemaOperativo">
+            <EntityTypeMapping TypeName="MovilAppModel.SistemaOperativo">
+              <MappingFragment StoreEntitySet="SistemaOperativo">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CC_UNIDAD_COMPRAS">
+            <EntityTypeMapping TypeName="MovilAppModel.CC_UNIDAD_COMPRAS">
+              <MappingFragment StoreEntitySet="CC_UNIDAD_COMPRAS">
+                <ScalarProperty Name="des_telefono" ColumnName="des_telefono" />
+                <ScalarProperty Name="COD_CAPITULO" ColumnName="COD_CAPITULO" />
+                <ScalarProperty Name="DES_UNIDAD" ColumnName="DES_UNIDAD" />
+                <ScalarProperty Name="COD_UNIDAD_COMPRAS" ColumnName="COD_UNIDAD_COMPRAS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
