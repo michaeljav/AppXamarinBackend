@@ -30,3 +30,4 @@ For database connection use Linq; Store precedences and views to decouple databa
 
 ![](Images_webservices_appmobil/2022-06-20_20h26_56.png)
 ![](Images_webservices_appmobil/2022-06-20_20h29_16.png)
+![](Images_webservices_appmobil/2022-06-20_22h54_50.png)
